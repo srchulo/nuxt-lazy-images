@@ -1,4 +1,5 @@
 export default {
+  target: 'static',
   mode: 'universal',
   /*
    ** Headers of the page
@@ -27,7 +28,7 @@ export default {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: [],
+  plugins: ['~/plugins/lazy-images.js'],
   /*
    ** Nuxt.js dev-modules
    */
@@ -38,7 +39,13 @@ export default {
   /*
    ** Nuxt.js modules
    */
-  modules: [],
+  modules: [
+    ['nuxt-lazy-load', { directiveOnly: true }],
+    'nuxt-responsive-loader'
+  ],
+  responsiveLoader: {
+    placeholder: true
+  },
   /*
    ** Build configuration
    */

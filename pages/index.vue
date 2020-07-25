@@ -1,10 +1,13 @@
 <template>
   <div class="container">
     <div>
-      <logo />
-      <h1 class="title">
+      <lazy-wrapper
+        tag="h1"
+        class="title"
+        :src="require('~/assets/images/ocean.jpg')"
+      >
         nuxt-lazy-images
-      </h1>
+      </lazy-wrapper>
       <h2 class="subtitle">
         My laudable Nuxt.js project
       </h2>
@@ -20,16 +23,37 @@
           GitHub
         </a>
       </div>
+      <div v-for="catPic in catPics" :key="catPic" class="catPic">
+        <lazy-image
+          :src="require(`~/assets/images/${catPic}`)"
+          width="350"
+          height="350"
+        />
+      </div>
+
+      <lazy-wrapper
+        tag="h1"
+        class="title"
+        :src="require('~/assets/images/volcano.jpg')"
+      >
+        nuxt-lazy-images
+      </lazy-wrapper>
     </div>
   </div>
 </template>
 
 <script>
-import Logo from '~/components/Logo.vue'
-
 export default {
-  components: {
-    Logo
+  data() {
+    return {
+      catPics: [
+        'orange_cat.jpg',
+        'sleepy_cat.jpg',
+        'looking_cat.jpg',
+        'feather_cat.jpg',
+        'grass_cat.jpg'
+      ]
+    }
   }
 }
 </script>
@@ -50,19 +74,31 @@ export default {
   display: block;
   font-weight: 300;
   font-size: 100px;
-  color: #35495e;
+  color: #def;
   letter-spacing: 1px;
+
+  /* You must set a specified height */
+  background-position: center center;
+  /* Center the image */
+  background-repeat: no-repeat;
+  /* Do not repeat the image */
+  background-size: cover;
+  /* Resize the background image to cover the entire container */
 }
 
 .subtitle {
   font-weight: 300;
   font-size: 42px;
-  color: #526488;
+  color: #fff;
   word-spacing: 5px;
   padding-bottom: 15px;
 }
 
 .links {
   padding-top: 15px;
+}
+
+.catPic {
+  margin: 20px;
 }
 </style>
